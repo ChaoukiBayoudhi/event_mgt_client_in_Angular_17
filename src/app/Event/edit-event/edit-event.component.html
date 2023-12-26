@@ -1,0 +1,48 @@
+<h2>Event Properties</h2>
+@if(feedback.message) {
+  <div class="alert alert-{{feedback.type}}">
+    {{ feedback.message }}
+  </div>
+}
+@if(event){
+<form  #editForm="ngForm" (ngSubmit)="save()">
+@if(event.id){
+<mat-form-field class="full-width">
+<mat-label>Id</mat-label>
+<input type="text" matInput [(ngModel)]="event.id" name="id" readonly placeholder="Id">
+</mat-form-field>
+}
+<mat-form-field class="full-width">
+<mat-label>Name</mat-label>
+<input type="text" matInput [(ngModel)]="event.name" name="name" placeholder="Name">
+</mat-form-field>
+<mat-form-field class="full-width">
+<mat-label>Description</mat-label>
+<input type="text" matInput [(ngModel)]="event.description" name="description" placeholder="Description">
+</mat-form-field>
+<mat-form-field class="full-width">
+<mat-label>Date</mat-label>
+
+<input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="event.date" name="Date">
+<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+<mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+<mat-form-field class="full-width">
+<mat-label>Theme</mat-label>
+<input type="text" matInput [(ngModel)]="event.theme" name="theme" placeholder="Theme">
+</mat-form-field>
+<mat-form-field class="full-width">
+<mat-label>budget</mat-label>
+<input type="number" matInput [(ngModel)]="event.budget" name="budget" placeholder="Budget">
+</mat-form-field>
+<mat-form-field class="full-width">
+<mat-label>nb Places</mat-label>
+<input type="number" matInput [(ngModel)]="event.nbPlaces" name="nbPlaces" placeholder="Nb Places">
+</mat-form-field>
+
+<div>
+  <button type="submit" mat-flat-button color="primary" [disabled]="!editForm.form.valid" id="save">Save</button>
+  <button type="button" mat-flat-button color="accent" (click)="cancel()" id="cancel">Cancel</button>
+</div>
+</form>
+}
